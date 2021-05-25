@@ -5,11 +5,12 @@ import os
 
 
 def infinite_run():
-    chrome_path = 'chromedriver'
     options = webdriver.ChromeOptions()
-    options.binary_location = os.environ.get('GOOGLE_CHROME_SHIM', None)
+    options.binary_location = os.environ.get('GOOGLE_CHROME_BIN', None)
+    options.add_argument("--disable-dev-shm-usage")
+    options.add_argument("--no-sandbox")
     options.add_argument('--headless')
-    driver = webdriver.Chrome(chrome_path, options=options)
+    driver = webdriver.Chrome(os.environ.get("CHROMEDRIVER_PATH"), options=options)
 
     while True:
         check_stand(driver, values.stands['dev'])
