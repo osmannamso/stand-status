@@ -1,13 +1,15 @@
 from time import sleep
 from selenium import webdriver
 import values
+import os
 
 
 def infinite_run():
-    chrome_path = "chromedriver"
-    op = webdriver.ChromeOptions()
-    op.add_argument('--headless')
-    driver = webdriver.Chrome(chrome_path, options=op)
+    chrome_path = 'chromedriver'
+    options = webdriver.ChromeOptions()
+    options.binary_location = os.environ.get('GOOGLE_CHROME_SHIM', None)
+    options.add_argument('--headless')
+    driver = webdriver.Chrome(chrome_path, options=options)
 
     while True:
         check_stand(driver, values.stands['dev'])
