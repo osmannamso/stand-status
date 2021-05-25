@@ -5,6 +5,7 @@ import os
 
 
 def infinite_run():
+    print('started')
     options = webdriver.ChromeOptions()
     options.binary_location = os.environ.get('GOOGLE_CHROME_BIN', None)
     options.add_argument("--disable-dev-shm-usage")
